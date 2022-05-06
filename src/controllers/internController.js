@@ -22,7 +22,7 @@ const createIntern = async function (req, res) {
     }
     
     if (Object.keys(createData).length > 0)
-      console.log(createData)
+      console.log(Object.keys(createData).length)
     let savedData = await internModel.create(createData)
 
     // if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){

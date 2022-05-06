@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// const http = require('https')
 
 const collegeSchema = new mongoose.Schema({
     name : {
@@ -10,10 +11,12 @@ const collegeSchema = new mongoose.Schema({
         type : String,
         required : true,
     },
-    logoLink : {
-        type : String,
-        required : true
+    logoLink: {
+        type: String,
+        required: "URL can't be empty",
+        unique: true
 
+        
     },
     isDeleted : {
         type : Boolean,
@@ -22,5 +25,9 @@ const collegeSchema = new mongoose.Schema({
     
     
 },{timestamps:true})
+collegeSchema.path('logoLink').validate((val) => {
+    urlRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/;
+    return urlRegex.test(val);
+}, 'Invalid URL.');
 
 module.exports = mongoose.model("College", collegeSchema)

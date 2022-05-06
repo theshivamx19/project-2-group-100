@@ -6,12 +6,10 @@ name : {
     type:String,
     required:true
 },
- 
 email : {
      type:String,
      required:true,
      tolowercase : true,
-
     },
 
 mobile :{
@@ -22,11 +20,12 @@ mobile :{
 },
 collegeId: {
     type: ObjectId,
-    ref : 'college'
+    ref : 'College'
 },
 isDeleted: {
     type:Boolean, 
     default: false
 },
 },{timestamps:true})
+
 module.exports = mongoose.model("Intern", internSchema)
